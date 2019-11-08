@@ -74,6 +74,10 @@ public interface BaseWordMapper {
      */
     Integer count();
 
+    List<BaseWord> selectRandByType(@Param("type")String type,@Param("wordCount")Integer wordCount);
+
+
+
 
 
 

@@ -146,8 +146,17 @@ public class BaseWordController {
         return JSON.toJSONString(new Result(baseWords));
     }
 
+    @RequestMapping(value = "/randomBaseWords", method = RequestMethod.GET)
+    @ResponseBody
     public String randomBaseWords(Integer length) {
         List<BaseWord> baseWords = baseWordService.selectByRandoms(length);
+        return JSON.toJSONString(new Result(baseWords));
+    }
+
+    @RequestMapping(value = "/randomBaseWordsByType", method = RequestMethod.GET)
+    @ResponseBody
+    public String  randomBaseWordsByType(Integer length, String type){
+        List<BaseWord> baseWords = baseWordService.selectRandByType(type, length);
         return JSON.toJSONString(new Result(baseWords));
     }
 }

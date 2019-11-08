@@ -109,6 +109,14 @@ public class BaseWordServiceImpl implements BaseWordService {
         return baseWords;
     }
 
+	@Override
+	public List<BaseWord> selectRandByType(String type, Integer wordCount){
+		 return baseWordMapper.selectRandByType(type, wordCount);
+	}
+
+
+
+
 
 }
 

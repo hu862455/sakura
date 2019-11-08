@@ -51,11 +51,14 @@ public interface BaseWordService {
 
     BaseWord selectByRandom();
 
-
-
 	Integer count();
 
     List<BaseWord> selectByRandoms(Integer length);
+
+
+
+    List<BaseWord> selectRandByType(String type, Integer wordCount);
+
 }
 
 
