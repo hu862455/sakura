@@ -188,6 +188,6 @@
     )
     ORDER BY
     baseWord.id ASC
-    LIMIT 1;
+    LIMIT #{wordCount};
   </select>
 </mapper>
