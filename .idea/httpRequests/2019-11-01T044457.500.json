@@ -1,0 +1,1 @@
+{"timestamp":"2019-11-01T08:44:57.301+0000","status":500,"error":"Internal Server Error","message":"not support type : class com.hushuai.sakura.vo.Result","path":"/sakura/beseWord/getAllByType"}

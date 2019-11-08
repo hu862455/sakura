@@ -1,0 +1,1 @@
+{"timestamp":"2019-11-01T08:29:49.520+0000","status":500,"error":"Internal Server Error","message":"Invalid bound statement (not found): com.hushuai.sakura.service.BaseWordService.selectAllByType","path":"/sakura/beseWord/getAllByType"}

@@ -22,8 +22,8 @@ public class SakuraApplication {
         SpringApplication.run(SakuraApplication.class, args);
     }
 
-    @RequestMapping("/")
-    public String start() {
-        return "index.html";
-    }
+//    @RequestMapping("/")
+//    public String start() {
+//        return "index";
+//    }
 }

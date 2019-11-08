@@ -1,12 +1,12 @@
 package com.hushuai.sakura.controller;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.hushuai.sakura.dto.BaseWord;
 import com.hushuai.sakura.service.BaseWordService;
 import com.hushuai.sakura.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,12 +22,18 @@ import java.util.List;
  * @Description:
  */
 @Controller
-@RequestMapping("/beseWord")
+@RequestMapping("/baseWord")
 public class BaseWordController {
 
     @Autowired
     private BaseWordService baseWordService;
 
+    @RequestMapping("/")
+    public String index(Model model){
+        model.addAttribute("name","hushuai");
+        return "/index";
+
+    }
     /**
      * @Description:TODO
      * @params: [type]
@@ -135,12 +141,12 @@ public class BaseWordController {
      */
     @RequestMapping(value = "/randomBaseWord", method = RequestMethod.GET)
     @ResponseBody
-    public String randomBaseWord(){
+    public String randomBaseWord() {
         BaseWord baseWords = baseWordService.selectByRandom();
         return JSON.toJSONString(new Result(baseWords));
     }
 
-    public String randomBaseWords(Integer length){
+    public String randomBaseWords(Integer length) {
         List<BaseWord> baseWords = baseWordService.selectByRandoms(length);
         return JSON.toJSONString(new Result(baseWords));
     }

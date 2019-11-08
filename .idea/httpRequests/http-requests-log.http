@@ -1,0 +1,106 @@
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T044527.200.txt
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T044457.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T044228.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T044149.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T044042.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T043833.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T043727.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T043417.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T043015.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T043013.500.json
+
+###
+
+GET http://localhost:8088/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-01T042949.500.json
+
+###
+
+GET http://localhost:8080/sakura/beseWord/getAllByType?type=1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/http://localhost:8088/sakura/beseWord/getAllByType
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/sakura
+Accept: */*
+Cache-Control: no-cache
+
+###
+
