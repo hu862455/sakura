@@ -153,6 +153,15 @@ public class BaseWordController {
         return JSON.toJSONString(new Result(baseWords));
     }
 
+    /**
+     * @Description: 根据type随机获取baseWords
+     * @params: [length, type]
+     * @return: java.lang.String
+     * @exception:
+     * @methodName: randomBaseWordsByType
+     * @updateDate: 2019/11/8 20:44
+     * @updateAuthor: shuaihu2
+     */
     @RequestMapping(value = "/randomBaseWordsByType", method = RequestMethod.GET)
     @ResponseBody
     public String  randomBaseWordsByType(Integer length, String type){
