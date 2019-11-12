@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hushuai.sakura.mapper.TextWordMapper">
+  <resultMap id="BaseResultMap" type="com.hushuai.sakura.dto.TextWord">
+    <!--@mbg.generated-->
+    <!--@Table text_word-->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="japan" jdbcType="VARCHAR" property="japan" />
+    <result column="read" jdbcType="VARCHAR" property="read" />
+    <result column="china" jdbcType="VARCHAR" property="china" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hushuai.sakura.dto.TextWord">
+    <!--@mbg.generated-->
+    insert into text_word (id, japan, `read`, 
+      china)
+    values (#{id,jdbcType=VARCHAR}, #{japan,jdbcType=VARCHAR}, #{read,jdbcType=VARCHAR}, 
+      #{china,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hushuai.sakura.dto.TextWord">
+    <!--@mbg.generated-->
+    insert into text_word
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id != ''">
+        id,
+      </if>
+      <if test="japan != null and japan != ''">
+        japan,
+      </if>
+      <if test="read != null and read != ''">
+        `read`,
+      </if>
+      <if test="china != null and china != ''">
+        china,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id != ''">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="japan != null and japan != ''">
+        #{japan,jdbcType=VARCHAR},
+      </if>
+      <if test="read != null and read != ''">
+        #{read,jdbcType=VARCHAR},
+      </if>
+      <if test="china != null and china != ''">
+        #{china,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

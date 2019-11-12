@@ -54,3 +54,11 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
   returnPageInfo: check
+# 有道智云相关参数
+youdao:
+  # 应用id
+  APP_KEY: 13e2f6935800a04e
+  # 接口路径
+  YOUDAO_URL: "https://openapi.youdao.com/ttsapi"
+  # 应用密钥
+  APP_SECRET : HlZxsek2uf5zjyKixN5lTAkIZE5Sj0wi
