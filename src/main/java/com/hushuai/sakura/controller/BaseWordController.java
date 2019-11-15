@@ -3,6 +3,8 @@ package com.hushuai.sakura.controller;
 import com.alibaba.fastjson.JSON;
 import com.hushuai.sakura.dto.BaseWord;
 import com.hushuai.sakura.service.BaseWordService;
+import com.hushuai.sakura.service.PronunciationService;
+import com.hushuai.sakura.tools.TtsV1;
 import com.hushuai.sakura.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,14 +30,19 @@ import java.util.List;
 public class BaseWordController {
 
     @Autowired
+    private TtsV1 ttsV1;
+    @Autowired
     private BaseWordService baseWordService;
+    @Autowired
+    private PronunciationService pronunciationService;
 
     @RequestMapping("/")
-    public String index(Model model){
-        model.addAttribute("name","hushuai");
+    public String index(Model model) {
+        model.addAttribute("name", "hushuai");
         return "/index";
 
     }
+
     /**
      * @Description:TODO
      * @params: [type]
@@ -164,8 +173,15 @@ public class BaseWordController {
      */
     @RequestMapping(value = "/randomBaseWordsByType", method = RequestMethod.GET)
     @ResponseBody
-    public String  randomBaseWordsByType(Integer length, String type){
+    public String randomBaseWordsByType(Integer length, String type) {
         List<BaseWord> baseWords = baseWordService.selectRandByType(type, length);
         return JSON.toJSONString(new Result(baseWords));
+    }
+
+    @RequestMapping(value = "/getPronunciation")
+    @ResponseBody
+    public String getPronunciation() throws IOException {
+        Map<String, String> yuYinParams = ttsV1.getYuYinParams("おやすみ", "ja", "baseWord");
+        return JSON.toJSONString(yuYinParams);
     }
 }
