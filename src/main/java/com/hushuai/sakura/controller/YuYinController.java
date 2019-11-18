@@ -20,7 +20,9 @@ import java.io.IOException;
 public class YuYinController {
 
     @RequestMapping()
-    public void getYuYin(HttpServletRequest request, HttpServletResponse response, String text) throws IOException {
+    public void getYuYin(HttpServletRequest request, HttpServletResponse response, String text, String type) throws IOException {
+
+
         response.setHeader("Content-type", "text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");//解决乱码
         response.setContentType("text/html;charset=UTF-8");//解决乱码

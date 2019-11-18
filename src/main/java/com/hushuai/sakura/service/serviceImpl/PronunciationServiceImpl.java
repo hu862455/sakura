@@ -41,4 +41,13 @@ public class PronunciationServiceImpl implements PronunciationService{
         return pronunciationMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public String getMP3Path(String q) {
+        Pronunciation pronunciation = pronunciationMapper.selectFirstByText(q);
+        if(pronunciation == null){
+            return null;
+        }
+        return pronunciation.getPronunciationPath();
+    }
+
 }

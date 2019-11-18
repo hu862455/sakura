@@ -3,11 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.hushuai.sakura.service.PronunciationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.hushuai.sakura.dto.BaseWord;
 import com.hushuai.sakura.mapper.BaseWordMapper;
 import com.hushuai.sakura.service.BaseWordService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Class_name: BaseWordServiceImpl
@@ -21,6 +24,9 @@ public class BaseWordServiceImpl implements BaseWordService {
 
     @Resource
     private BaseWordMapper baseWordMapper;
+
+    @Autowired
+    private PronunciationService pronunciationService;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -114,8 +120,10 @@ public class BaseWordServiceImpl implements BaseWordService {
 		 return baseWordMapper.selectRandByType(type, wordCount);
 	}
 
-
-
+    @Override
+    public String getMP3Path(String q) {
+        return pronunciationService.getMP3Path(q);
+    }
 
 
 }

@@ -59,6 +59,7 @@ public interface BaseWordService {
 
     List<BaseWord> selectRandByType(String type, Integer wordCount);
 
+    String getMP3Path(String q);
 }
 
 

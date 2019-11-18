@@ -16,4 +16,5 @@ public interface PronunciationService{
 
     int updateByPrimaryKey(Pronunciation record);
 
+    String getMP3Path(String q);
 }

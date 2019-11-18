@@ -1,4 +1,5 @@
 package com.hushuai.sakura.mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.hushuai.sakura.dto.Pronunciation;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,4 +17,7 @@ public interface PronunciationMapper {
     int updateByPrimaryKeySelective(Pronunciation record);
 
     int updateByPrimaryKey(Pronunciation record);
+
+    Pronunciation selectFirstByText(@Param("text")String text);
+
 }

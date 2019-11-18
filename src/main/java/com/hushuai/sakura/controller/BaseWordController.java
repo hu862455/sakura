@@ -2,18 +2,26 @@ package com.hushuai.sakura.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.hushuai.sakura.dto.BaseWord;
+import com.hushuai.sakura.dto.Pronunciation;
 import com.hushuai.sakura.service.BaseWordService;
 import com.hushuai.sakura.service.PronunciationService;
 import com.hushuai.sakura.tools.TtsV1;
 import com.hushuai.sakura.vo.Result;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -180,8 +188,57 @@ public class BaseWordController {
 
     @RequestMapping(value = "/getPronunciation")
     @ResponseBody
-    public String getPronunciation() throws IOException {
-        Map<String, String> yuYinParams = ttsV1.getYuYinParams("おやすみ", "ja", "baseWord");
-        return JSON.toJSONString(yuYinParams);
+    public String getPronunciation(HttpServletRequest request, HttpServletResponse response, String q, String type) throws IOException {
+        String path = pronunciationService.getMP3Path(q);
+        String Mp3Path;
+        if (path == null) {
+            // 1.数据库中没有对应音频文件
+            // 2.访问接口获取对应音频文件并存储
+            Map<String, String> yuYinParams = ttsV1.getYuYinParams(q, "ja", "baseWord");
+            if("true".equals(yuYinParams.get("success"))){
+                // 转储成功
+                Mp3Path = yuYinParams.get("path");
+                Pronunciation newPronunciation = new Pronunciation();
+                newPronunciation.setPronunciationPath(Mp3Path);
+                newPronunciation.setPronunciationType("baseWord");
+                newPronunciation.setText(q);
+                pronunciationService.insert(newPronunciation);
+            }else{
+                // 失败返回
+                return JSON.toJSONString(new Result(Integer.valueOf(yuYinParams.get("errorCode")),yuYinParams.get("msg")));
+            }
+        }else{
+            // 数据库中有对应音频文件
+            Mp3Path = path;
+            File file = new File(Mp3Path);
+            // 如果音频原始文件不存在
+            if (!file.exists()) throw new RuntimeException("音频文件不存在 --> 404");
+            String range = request.getHeader("Range");
+            String[] rs = range.split("\\=");
+            range = rs[1].split("\\-")[0];
+            int start = Integer.parseInt(range);
+            long length = file.length();
+            if (start > 0)
+            {
+                response.setStatus(HttpStatus.SC_PARTIAL_CONTENT);
+            }
+            response.addHeader("Accept-Ranges", "bytes");
+            response.addHeader("Content-Length", length + "");
+            response.addHeader("Content-Range", "bytes " + start + "-" + (length - 1) + "/" + length);
+            response.addHeader("Content-Type", "audio/mpeg;charset=UTF-8");
+
+            OutputStream os = response.getOutputStream();
+            FileInputStream fis = new FileInputStream(file);
+            fis.skip(start);
+            FileCopyUtils.copy(fis, os);
+
+        }
+
+
+
+
+//        Map<String, String> yuYinParams = ttsV1.getYuYinParams("おやすみ", "ja", "baseWord");
+//        return JSON.toJSONString(yuYinParams);
+        return null;
     }
 }
